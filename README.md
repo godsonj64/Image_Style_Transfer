@@ -40,7 +40,7 @@ The Image Style Transfer project extracts features from a reference image and ap
 1. **Clone the Repository**:
 
     ```bash
-    git clone https://github.com/yourusername/image-style-transfer.git
+    git clone https://github.com/godsonj64/image-style-transfer.git
     cd image-style-transfer
     ```
 
