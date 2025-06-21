@@ -8,7 +8,7 @@ Feature Extraction: Extracts various features such as brightness, contrast, hue,
 
 Style Transfer: Applies the style of the reference image to the target image using histogram matching.
 
-Image Enhancement: Enhances the processed image by adjusting brightness, contrast, and color.
+Image Enhancement: Enhances the processed image by adjusting brightness, contrast, and color. Additional utilities allow for highlight/shadow adjustments and vignette effects.
 Visualization: Plots the reference image, original target image, and processed target image along with their respective features.
 ![result4](https://github.com/user-attachments/assets/0e020632-f4d6-4abf-9d1e-d9addab57eed)
 ![reslut2](https://github.com/user-attachments/assets/e81435cd-294b-44d4-8ab2-9b29b329081b)
@@ -25,6 +25,8 @@ The Image Style Transfer project extracts features from a reference image and ap
 - **Feature Extraction**: Extracts various features such as brightness, contrast, hue, saturation, vibrance, color moments, and color coherence vector (CCV) from the images.
 - **Style Transfer**: Applies the style of the reference image to the target image using histogram matching.
 - **Image Enhancement**: Enhances the processed image by adjusting brightness, contrast, and color.
+- **Highlight and Shadow Control**: Fine-tunes shadows and highlights for better exposure.
+- **Vignette Effect**: Adds an optional vignette for creative styling.
 - **Visualization**: Plots the reference image, original target image, and processed target image along with their respective features.
 
 ## Requirements
