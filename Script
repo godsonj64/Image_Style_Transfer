@@ -68,7 +68,9 @@ class ImageStyleTransfer:
         # Calculate Color Coherence Vector (CCV)
         def calculate_ccv(channel, threshold=10):
             blurred = cv2.GaussianBlur(channel, (5, 5), 0)
-            mask = np.abs(channel - blurred) > threshold
+            # Convert to a signed type before subtraction to avoid wrap-around
+            diff = channel.astype(np.int16) - blurred.astype(np.int16)
+            mask = np.abs(diff) > threshold
             coherent = np.sum(mask)
             incoherent = channel.size - coherent
             return coherent, incoherent
