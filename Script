@@ -169,6 +169,26 @@ class ImageStyleTransfer:
         image_enhanced = enhancer.enhance(color)
         return np.array(image_enhanced)
 
+    def adjust_highlights_shadows(self, image, shadow_factor=1.0, highlight_factor=1.0):
+        """Adjust shadows and highlights similar to photo editors."""
+        hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV).astype(np.float32)
+        v = hsv[:, :, 2] / 255.0
+        shadows = v < 0.5
+        v[shadows] = np.clip(v[shadows] * shadow_factor, 0, 1)
+        v[~shadows] = np.clip(v[~shadows] * highlight_factor, 0, 1)
+        hsv[:, :, 2] = v * 255
+        return cv2.cvtColor(hsv.astype(np.uint8), cv2.COLOR_HSV2RGB)
+
+    def add_vignette(self, image, strength=0.5):
+        """Apply a vignette effect to the image."""
+        rows, cols = image.shape[:2]
+        kernel_x = cv2.getGaussianKernel(cols, int(cols * strength))
+        kernel_y = cv2.getGaussianKernel(rows, int(rows * strength))
+        kernel = kernel_y @ kernel_x.T
+        mask = kernel / kernel.max()
+        vignette = image * mask[:, :, np.newaxis]
+        return vignette.astype(np.uint8)
+
     def plot_results(self, reference_image, reference_features, original_image, original_features, processed_image,
                      processed_features, title):
         """
